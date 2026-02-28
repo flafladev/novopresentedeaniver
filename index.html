@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa História</title>
+    
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Lightbox -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+    
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- PARTICULAS AO FUNDO -->
+    <div id="particles-js"></div>
+
+    <!-- TELA DE SENHA -->
+    <div class="senha-overlay" id="senhaOverlay">
+        <div class="senha-container">
+            <div class="senha-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h2 class="senha-titulo">Nosso amor tem senha</h2>
+            <p class="senha-sub">Digite a data do nosso primeiro beijo</p>
+            
+            <div class="senha-campos">
+                <input type="text" id="dia" class="senha-input" placeholder="DD" maxlength="2" inputmode="numeric">
+                <span class="separador">/</span>
+                <input type="text" id="mes" class="senha-input" placeholder="MM" maxlength="2" inputmode="numeric">
+                <span class="separador">/</span>
+                <input type="text" id="ano" class="senha-input" placeholder="AAAA" maxlength="4" inputmode="numeric">
+            </div>
+            
+            <div class="senha-erro" id="senhaErro">
+                <i class="fas fa-exclamation-triangle"></i> Data incorreta
+            </div>
+            
+            <button class="senha-botao" id="senhaBotao">
+                <span>Entrar</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+            
+            <p class="senha-dica">
+                <i class="fas fa-lightbulb"></i> Dica: DD/MM/AAAA
+            </p>
+        </div>
+    </div>
+
+    <!-- TELA DE CARREGAMENTO (só aparece após senha correta) -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <div class="loading-heart">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h3 class="loading-text">Carregando nosso universo</h3>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+            <p class="loading-mensagem">Apenas um momento... Tudo no tempo de Deus!</p>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL (inicialmente oculto) -->
+    <div class="site-content" id="siteContent" style="display: none;">
+        <!-- MODAL SURPRESA -->
+<div class="surpresa-modal" id="surpresaModal">
+    <div class="surpresa-content">
+        <div class="surpresa-embrulho">
+            <div class="embrulho-tampa"></div>
+            <div class="embrulho-corpo">
+                <div class="presente-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+            </div>
+        </div>
+        <div class="surpresa-mensagem" id="surpresaMensagem">
+            <!-- Mensagem será inserida via JavaScript -->
+        </div>
+        <button class="surpresa-fechar" onclick="fecharSurpresa()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+        
+        <!-- HEADER -->
+        <header class="header" id="header">
+            <nav class="navbar">
+                <div class="logo">
+                    <span class="logo-texto">F</span>
+                    <span class="logo-simbolo">❤️</span>
+                    <span class="logo-texto">G</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="nav-link active">Início</a></li>
+                    <li><a href="#linha-do-tempo" class="nav-link">História</a></li>
+                    <li><a href="#galeria" class="nav-link">Galeria</a></li>
+                    <li><a href="#videos" class="nav-link">Vídeos</a></li>
+                    <li><a href="#desafios" class="nav-link">Desafios</a></li>
+                    <li><a href="#carta" class="nav-link">Carta</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </nav>
+        </header>
+
+        <!-- HERO -->
+        <section id="inicio" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-bg-video">
+                <video autoplay muted loop playsinline>
+                    <source src="assets/videos/hero-bg.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-content">
+                <span class="hero-pre" data-aos="fade-down">Bem-vinda ao nosso universo</span>
+                <h1 class="hero-title" data-aos="fade-right">
+                    <span class="title-line">Cada segundo</span>
+                    <span class="title-line highlight">ao seu lado</span>
+                    <span class="title-line">é único</span>
+                </h1>
+                <div class="hero-counter" data-aos="fade-up">
+                    <div class="counter-item">
+                        <span class="counter-number" id="dias">0</span>
+                        <span class="counter-label">dias</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number" id="horas">0</span>
+                        <span class="counter-label">horas</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number" id="minutos">0</span>
+                        <span class="counter-label">minutos</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number" id="segundos">0</span>
+                        <span class="counter-label">segundos</span>
+                    </div>
+                </div>
+                <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#linha-do-tempo" class="btn btn-primary">Explorar <i class="fas fa-arrow-right"></i></a>
+                    <button class="btn btn-outline" onclick="iniciarSurpresa()">Surpresa <i class="fas fa-gift"></i></button>
+                </div>
+            </div>
+            <div class="hero-scroll">
+                <span>Role para ver</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- LINHA DO TEMPO -->
+        <section id="linha-do-tempo" class="timeline-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Nossa Linha do Tempo</h2>
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">15 Jan 2023</div>
+                        <div class="timeline-content">
+                            <img src="foto-junto3.jpg" alt="Encontro" class="timeline-img">
+                            <h3>O Primeiro Encontro</h3>
+                            <p>Quando o acaso nos uniu num simples Supermercado, foi e em uma esquina qualquer que eu te fiz uma promessa - ou melhor, eu te deixei marcado com um simples beijo sincero e verdadeiro na testa: essa promessa.</p>
+                            <a href="assets/images/encontro.jpg" data-lightbox="timeline" data-title="Primeiro encontro" class="timeline-link">Ver foto <i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">9 Dez 2025</div>
+                        <div class="timeline-content">
+                            <img src="foto-junto2.jpg" alt="Beijo" class="timeline-img">
+                            <h3>Primeiro Beijo</h3>
+                            <p>O dia em que voltamos para casa, pulando de alegria por aquele momento tão esperado e único... mal sabiamos que o melhor beijo ainda estaria por vir!</p>
+                            <a href="assets/images/primeiro-beijo.jpg" data-lightbox="timeline" data-title="Primeiro beijo" class="timeline-link">Ver foto <i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">6 fev 2026</div>
+                        <div class="timeline-content">
+                            <img src="foto-junto1.jpg" alt="Viagem" class="timeline-img">
+                            <h3>Encontro Inesquecivel</h3>
+                            <p>Quando a conexão aumentou e nossas certezas se manisfestou em sorrisos.</p>
+                            <a href="assets/images/viagem.jpg" data-lightbox="timeline" data-title="Primeira viagem" class="timeline-link">Ver foto <i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">20 Dez 2025</div>
+                        <div class="timeline-content">
+                            <img src="foto-junto4.jpg" alt="Natal" class="timeline-img">
+                            <h3>Natal Especial</h3>
+                            <p>O dia que eu decidi oficializar a promessa e certeza de que era você que eu queria levar para vida...</p>
+                            <a href="assets/images/natal.jpg" data-lightbox="timeline" data-title="Natal juntos" class="timeline-link">Ver foto <i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERIA -->
+        <section id="galeria" class="gallery-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Momentos em Fotos</h2>
+                <div class="gallery-grid" data-aos="fade-up" data-aos-delay="200">
+                    <a href="assets/images/foto1.jpg" data-lightbox="gallery" class="gallery-item"><img src="foto-junto5.jpg" alt=""></a>
+                    <a href="assets/images/foto2.jpg" data-lightbox="gallery" class="gallery-item"><img src="foto-nosso5.jpg" alt=""></a>
+                    <a href="assets/images/foto3.jpg" data-lightbox="gallery" class="gallery-item"><img src="foto-nosso6.jpg" alt=""></a>
+                    <a href="assets/images/foto4.jpg" data-lightbox="gallery" class="gallery-item"><img src="foto-nosso7.jpg" alt=""></a>
+                    <a href="assets/images/foto5.jpg" data-lightbox="gallery" class="gallery-item"><img src="foto-nosso8.jpg" alt=""></a>
+                    <a href="assets/images/foto6.jpg" data-lightbox="gallery" class="gallery-item"><img src="foto-nosso9.jpg" alt=""></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- VÍDEOS -->
+<section id="videos" class="videos-section">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Vídeos que Marcam</h2>
+        <div class="videos-grid" data-aos="fade-up" data-aos-delay="200">
+            <!-- Vídeo 1 -->
+            <div class="video-item">
+                <video controls>
+                    <source src="videojuntos.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo.
+                </video>
+            </div>
+            <!-- Vídeo 2 -->
+            <div class="video-item">
+                <video controls>
+                    <source src="videojunto2.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo.
+                </video>
+            </div>
+            <!-- Vídeo 3 -->
+            <div class="video-item">
+                <video controls>
+                    <source src="videojuntos3.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo.
+                </video>
+            </div>
+        </div>
+    </div>
+</section>
+        <!-- DESAFIOS -->
+        <section id="desafios" class="challenges-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Desafios do FlaFla para minha Amada</h2>
+                <div class="challenges-grid">
+                    <!-- Desafio 1 -->
+                    <div class="challenge-card" data-aos="flip-left">
+                        <div class="challenge-icon"><i class="fas fa-question-circle"></i></div>
+                        <h3>Qual encontro eu mais gostei?</h3>
+                        <div class="challenge-options">
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'certo')">Supermercado</button>
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'errado')">Cafeteria</button>
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'errado')">Cinema (com a minha pequena best mirim)</button>
+                        </div>
+                        <div class="challenge-feedback"></div>
+                    </div>
+                    <!-- Desafio 2 -->
+                    <div class="challenge-card" data-aos="flip-left" data-aos-delay="100">
+                        <div class="challenge-icon"><i class="fas fa-heart"></i></div>
+                        <h3>Qual foi o meu primeiro medo com você?</h3>
+                        <div class="challenge-options">
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'errado')">Te perder</button>
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'certo')">Seu pai e sua mãe não me aceitar</button>
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'errado')">Nunca ter tido uma chance com você</button>
+                        </div>
+                        <div class="challenge-feedback"></div>
+                    </div>
+                    <!-- Desafio 3 -->
+                    <div class="challenge-card" data-aos="flip-left" data-aos-delay="200">
+                        <div class="challenge-icon"><i class="fas fa-heart"></i></div>
+                        <h3>O que eu mais quero?</h3>
+                        <div class="challenge-options">
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'certo')">Café com bolo com minha sogrinha</button>
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'certo')">Ter um momentinho so nosso em casa e no friozinho</button>
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'certo')">um pôr do Sol lindo, cafezinho e Você</button>
+                        </div>
+                        <div class="challenge-feedback"></div>
+                    </div>
+                    <!-- Desafio 4 (resposta livre) -->
+                    <div class="challenge-card" data-aos="flip-left" data-aos-delay="300">
+                        <div class="challenge-icon"><i class="fas fa-pencil-alt"></i></div>
+                        <h3>Complete: "Te amo mais que..."</h3>
+                        <input type="text" class="challenge-input" placeholder="Digite sua resposta">
+                        <button class="challenge-submit" onclick="verificarFrase(this)">Enviar</button>
+                        <div class="challenge-feedback"></div>
+                    </div>
+                    <!-- Desafio 5 (novo) -->
+                    <div class="challenge-card" data-aos="flip-left" data-aos-delay="400">
+                        <div class="challenge-icon"><i class="fas fa-cake-candles"></i></div>
+                        <h3>Qual é o meu bolo favorito?</h3>
+                        <div class="challenge-options">
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'errado')">Chocolate</button>
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'certo')">Cenoura</button>
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'errado')">Baunilha</button>
+                        </div>
+                        <div class="challenge-feedback"></div>
+                    </div>
+                    <!-- Desafio 6 (novo) -->
+                    <div class="challenge-card" data-aos="flip-left" data-aos-delay="500">
+                        <div class="challenge-icon"><i class="fas fa-film"></i></div>
+                        <h3>Qual meu filme favorito?</h3>
+                        <div class="challenge-options">
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'errado')"> Vingadores</button>
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'certo')">Creed</button>
+                            <button class="challenge-option" onclick="verificarDesafio(this, 'errado')">Para Todos Os Garotos Que Ja Amei</button>
+                        </div>
+                        <div class="challenge-feedback"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CARTA -->
+        <section id="carta" class="letter-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Uma Carta para Você</h2>
+                <div class="letter-card" data-aos="zoom-in">
+                    <div class="letter-header">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <span>Para o meu pôr do Sol💛🌞🌻</span>
+                    </div>
+                    <div class="letter-body">
+                        <p class="letter-paragraph">Meu pôr do Sol,</p>
+                        <p class="letter-paragraph">Desde que você entrou na minha vida, tudo ganhou mais cor, mais sentido. Cada dia ao seu lado é uma página nova na nossa história – uma história que eu quero escrever para sempre.</p>
+                        <p class="letter-paragraph">Lembra do nosso primeiro encontro? Eu nunca vou esquecer a forma como você sorriu, como seus olhos brilhavam. Naquele momento eu soube que era você. Naquele seu olahr que me pedia para ficar, que diziam "fica mais". </p>
+                        <p class="letter-paragraph">Hoje, olhando para tudo o que construímos, só tenho a agradecer. Você é meu porto seguro, minha melhor amiga, meu amor.</p>
+                        <p class="letter-paragraph">Te amo infinitamente.</p>
+                        <p class="letter-signature">Com todo meu Amor e  Carinho,</p>
+                        <p class="letter-signature-name">Rohzinho</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECORDAÇÕES EM PALAVRAS -->
+<section id="recordacoes" class="memories-section">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Recordações em Palavras</h2>
+        <p class="memories-subtitle" data-aos="fade-up" data-aos-delay="100">Cada frase que guardo com carinho</p>
+        
+        <!-- CARD ESPECIAL (TEXTO LONGO) -->
+        <div class="memory-card special-card" data-aos="zoom-in">
+            <span class="memory-date">❤️ Carta especial ❤️</span>
+            <div class="memory-text long-text">
+                <p>Gaby🤍</p>
+                <p>Gaby, primeiro, uma coisa que você precisa saber de mim, é que eu amo escrever texto/cartas, e gosto muito de expressar o que sinto independente do que seja, o motivo desse textinho é pra te dizer que, eu to gostando muito de te conhecer, as duas gaby, eu achei que você não tinha nada pra oferecer além de beleza, mas esses dias conversando com você, eu enxergo que você tem mais que beleza pra oferecer, tem educação, tem gentileza, tem carinho, sabe render umas boas risadas, é muito inteligente... e quando você me manda áudio, foto, eu percebo que só de olhar sua notificação, eu já estou sorrindo igual bobo.</p>
+                <p>Não sei o que você pensa sobre se relacionar por agora, não sei se você quer, claro que eu quero MUITO continuar conhecendo a gaby legal, a insegura, a que conta os segredos, a que se abre sem medo, a corajosa, a fofoqueira, a engraçada, a veinha, quero conhecer todas as gaby. Mas ao mesmo tempo não quero te perder por coisa boba, não quero te perder só porque eu comecei a gostar de você, eu amo conversar com você, sei que tá cedo DEMAIS pra dizer essas palavras, mas como eu disse "eu gosto de demonstrar..." e não acho errado dizer o que sente, acho lindo demais, eu percebi que você tem muitas qualidades tbm e que soa parecidas com as minhas, crenças, princípios, valores, maturidade, entre outros...</p>
+                <p>pra falar a verdade, se eu te mandar isso hoje, pode ter certeza que eu estarei com o coração na mão, porque estou com "medo" de mandar esse texto e vc me bloquear igual bloqueou os outros que davam em cima de você. Mas tenho que ter coragem pra admitir essas palavras, claro que eu não quero DE JEITO NENHUM, ficar conversando com você só porque você é bonita, não quero que pense isso plmds, muito pelo contrário, que te conhecer de VERDADE, pode até parecer mentira mas não é! E tudo bem se você quiser só amizade, estarei aqui pra rir com você e fofocar SEMPRE! Até porque minha vida não se resume só em namoro, óbvio! Mas seria legal ter alguém pra dividir os momentos kkkk não ache que eu fico escrevendo "texto pra todas", eu não sou assim, não sou igual eles, sou bem seletivo em questão disso e por isso to com muito medo do que você possa achar de mim... desculpa se eu acabar te decepcionando por causa desse texto, te decepcionar é a última coisa que eu quero, de verdade! Mas olha, tá tudo bem se você ainda sim, não quiser mais contato comigo, até entendo seu lado, mas acredito que mesmo assim, gostaria muito de pelo menos continuar conversando com você... até porque não é sempre que se encontra uma pessoa madura e com os mesmos princípios...</p>
+            </div>
+            <div class="memory-footer">🤍</div>
+        </div>
+        
+        <!-- GRADE DINÂMICA PARA AS DEMAIS MENSAGENS -->
+        <div class="memories-grid" id="memoriesGrid" data-aos="fade-up" data-aos-delay="200">
+            <!-- Os cards serão inseridos via JavaScript -->
+        </div>
+        
+        <div class="memories-load-more" id="loadMoreContainer">
+            <button class="btn btn-outline" id="loadMoreBtn" onclick="carregarMaisMemorias()">Carregar mais mensagens</button>
+        </div>
+    </div>
+</section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <p>Feito com ❤️ para você – Nossa história continua...</p>
+                <p class="footer-small">© 2025 · Todos os direitos reservados ao amor</p>
+            </div>
+        </footer>
+
+        <!-- PLAYER DE MÚSICA -->
+        <div class="music-player">
+            <audio id="background-music" loop>
+                <source src="loveme.mp3" type="audio/mpeg">
+            </audio>
+            <button class="music-toggle" onclick="toggleMusic()">
+                <i class="fas fa-play"></i>
+            </button>
+            <div class="music-info">
+                <span class="music-title">Nossa Música</span>
+                <span class="music-artist">Artista</span>
+            </div>
+        </div>
+
+    </div> <!-- fim site-content -->
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
