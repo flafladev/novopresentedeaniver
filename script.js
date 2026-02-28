@@ -341,15 +341,15 @@ function criarConfetes() {
 // ===== RECORDAÇÕES =====
 // Lista de mensagens (adicione quantas quiser)
 const mensagens = [
-    { data: "15/01/2023", texto: "Oii bibyzinha🤍... Aqui estou eu 2:10 da madrugada, fazendo esse texto porque não consegui dormir..." },
-    { data: "20/03/2023", texto: "primeiramente, eu vou começar me desculpando por esses dias eu não ter tido contato com vc como eu deveria..." },
-    { data: "10/06/2023", texto: "Vida... Eu sei que vc disse que queria se 'desapegar' dos boa noite, disse pra mim que não se importava mais e que tava tudo bem... " },
-    { data: "25/12/2023", texto: "É amorzinho, sei que não apareço por aqui a um bom tempo, sei que vc deve sentir falta dos textinhos..." },
-    { data: "14/02/2024", texto: "Eu caçaria um milhão de vaga-lumes por você, mas do que adiantaria, se o unico brilho que eu preciso caçar é o do seu olhar?" },
-    { data: "20/03/2024", texto: "Leonardo da Vinci precisou de quatro anos para pintar a Mona Lisa, mas ele arriscaria passar uma eternidade para TENTAR retratar os traços do seu sorriso." },
-    { data: "01/05/2024", texto: "Você é a razão dos meus sorrisos e a calmaria das minhas tempestades." },
-    { data: "15/06/2024", texto: "Lembra da nossa primeira discussão? No fim, rimos e percebemos que nada é maior que nosso amor." },
-    { data: "07/09/2024", texto: "Independência? A única independência que não quero é a de você." }
+    { data: "31/10/2025", texto: "Oii bibyzinha🤍... Aqui estou eu 2:10 da madrugada, fazendo esse texto porque não consegui dormir..." },
+    { data: "03/11/2025", texto: "primeiramente, eu vou começar me desculpando por esses dias eu não ter tido contato com vc como eu deveria..." },
+    { data: "02/01/2025", texto: "Vida... Eu sei que vc disse que queria se 'desapegar' dos boa noite, disse pra mim que não se importava mais e que tava tudo bem... " },
+    { data: "20/01/2025", texto: "É amorzinho, sei que não apareço por aqui a um bom tempo, sei que vc deve sentir falta dos textinhos..." },
+    { data: "02/12/2025", texto: "Eu caçaria um milhão de vaga-lumes por você, mas do que adiantaria, se o unico brilho que eu preciso caçar é o do seu olhar?" },
+    { data: "02/12/2025", texto: "Leonardo da Vinci precisou de quatro anos para pintar a Mona Lisa, mas ele arriscaria passar uma eternidade para TENTAR retratar os traços do seu sorriso." },
+    { data: "02/12/2025", texto: "Eu amei a sua presença, mesmo sem te sentir. Eu amo seu sorriso, mesmo quando tudo não vai bem. Eu amo quando as suas bobagens me fazem rir, e suas certezas sobre a gente são o que me mantêm de pé." },
+    { data: "02/12/2025", texto: "Você diz que não sente falta se eu não te der carinho, mas eu quase faria birra se não ouvisse seu lindo e gostoso sorriso" },
+    { data: "02/12/2025", texto: "Não preciso de outras mulheres (nem quero), se você é TUDO o que eu precisava encontrar. Quando se fala de mulher com 'M' maiúsculo, o nome da minha bybyzinha sempre estará lá. " }
 ];
 
 let mensagensVisiveis = 6; // Quantas aparecem inicialmente
